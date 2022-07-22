@@ -26,10 +26,14 @@ class ReceiveTelegramController extends Controller
             return;
         }
 
-        $message = sprintf(
-            '%s, заебал, давай бухать',
-            $userName,
-        );
+        if ($userName) {
+            $message = sprintf(
+                '%s, заебал, давай бухать',
+                $userName,
+            );
+        } else {
+            $message = 'заебал, давай бухать';
+        }
 
         $query = [
             'chat_id' => $userId,
@@ -45,5 +49,13 @@ class ReceiveTelegramController extends Controller
             $storage[$userId] = $userName;
             file_put_contents(dirname(__DIR__). 'names.txt', json_encode($storage));
         }
+    }
+
+    public function logs()
+    {
+        $storage = file_get_contents(app_path() . "/Httpnames.txt");
+        $storage = json_decode($storage, true);
+
+        print_r($storage);
     }
 }
