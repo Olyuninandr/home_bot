@@ -15,11 +15,14 @@ class ReceiveTelegramController extends Controller
         );
         $guzzleClient = new Client(['base_uri' => $baseUrl]);
 
+        $firstName = $request->request->get('message')['from']['first_name'] ?? null;
+        $lastName = $request->request->get('message')['from']['last_name'] ?? null;
+
         $userId = $request->request->get('message')['from']['id'] ?? null;
         $userName = sprintf(
             '%s %s',
-            $request->request->get('message')['from']['first_name'],
-            $request->request->get('message')['from']['last_name']
+                $firstName,
+                $lastName
         ) ?? null;
 
         if ($userName) {
