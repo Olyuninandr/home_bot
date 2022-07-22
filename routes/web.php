@@ -15,6 +15,7 @@ use App\Http\Controllers\ReceiveTelegramController;
 */
 
 Route::post('/receive', [ReceiveTelegramController::class, 'receive']);
+Route::get('/logs', [ReceiveTelegramController::class, 'logs']);
 
 Route::get('/', function () {
     return view('welcome');
