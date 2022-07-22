@@ -22,10 +22,6 @@ class ReceiveTelegramController extends Controller
             $request->request->get('message')['from']['last_name']
         ) ?? null;
 
-        if (is_null($userId) || is_null($userName)) {
-            return;
-        }
-
         if ($userName) {
             $message = sprintf(
                 '%s, заебал, давай бухать',
